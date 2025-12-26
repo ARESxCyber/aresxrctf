@@ -2,6 +2,7 @@
 # rCTF installation script
 
 # http://127.0.0.1:8080/login?token=dX0eVsk0%2Bl6gQqW4lDKB%2FPWZcVxOBNf0DZBaV8%2F%2Bf3fCa589qzQzmqslUFrGOK%2BrwVEvcCd9B%2FwnO8zXbHsdtJNq5BGWipMqL71%2FqZCYLn%2FpTQSVUb%2BbA4wm5uQY
+# http://127.0.0.1:8080/login?token=Huw5IBmo6lwZc1Ah%2FyLs2zrPB%2Fwezbn%2B%2BtqEaPZkhk7YmwwVcn1N5NNTOD7ZdlRzrf1O9MRarFwTu%2Fh%2BGAq%2F3gAQVlrm0XFNYLqhe3GiAx5F0qzCS4XpsPxmmcRQ
 
 set -e
 

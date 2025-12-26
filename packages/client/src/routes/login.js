@@ -6,7 +6,6 @@ import 'linkstate/polyfill'
 import withStyles from '../components/jss'
 
 import { login, setAuthToken } from '../api/auth'
-import IdCard from '../icons/id-card.svg'
 import CtftimeButton from '../components/ctftime-button'
 import CtftimeAdditional from '../components/ctftime-additional'
 import AuthOr from '../components/or'
@@ -429,7 +428,6 @@ export default withStyles(
                 autoComplete='off'
                 autoCorrect='off'
                 name='teamToken'
-                icon={<IdCard />}
                 placeholder='Team Token'
                 type='text'
                 value={teamToken}
