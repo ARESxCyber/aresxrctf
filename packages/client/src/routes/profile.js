@@ -36,7 +36,8 @@ const SummaryCard = memo(
         '& svg': {
           verticalAlign: 'middle',
           height: '1.25em',
-          fill: '#333',
+          fill: '#ff6b6b',
+          filter: 'drop-shadow(0 0 5px rgba(220, 38, 38, 0.6))',
         },
         marginRight: '1.5em',
       },
@@ -45,12 +46,24 @@ const SummaryCard = memo(
         overflow: 'hidden',
         margin: '0 !important',
         maxWidth: '75vw',
+        color: '#ff6b6b',
+        fontSize: '2.5rem',
+        fontWeight: 900,
+        textShadow: '0 0 15px rgba(220, 38, 38, 0.8), 4px 4px 0 #991b1b',
+        letterSpacing: '0.05em',
+        textTransform: 'uppercase',
       },
       privateHeader: {
         textOverflow: 'ellipsis',
         overflow: 'hidden',
         margin: '0 !important',
         maxWidth: '30vw',
+        color: '#ff6b6b',
+        fontSize: '2.5rem',
+        fontWeight: 900,
+        textShadow: '0 0 15px rgba(220, 38, 38, 0.8), 4px 4px 0 #991b1b',
+        letterSpacing: '0.05em',
+        textTransform: 'uppercase',
       },
       '@media (max-width: 804px)': {
         privateHeader: {
@@ -60,8 +73,35 @@ const SummaryCard = memo(
       wrapper: {
         display: 'flex',
         justifyContent: 'space-between',
+        alignItems: 'center',
         paddingTop: '15px',
-        paddingBottom: '5px',
+        paddingBottom: '15px',
+        borderBottom: '3px solid rgba(220, 38, 38, 0.3)',
+        marginBottom: '1.5rem',
+      },
+      actionBar: {
+        '& p': {
+          color: '#e5e5e5',
+          fontSize: '1.1rem',
+          fontWeight: 'bold',
+          marginBottom: '1rem',
+          textShadow: '0 0 5px rgba(220, 38, 38, 0.3)',
+          transition: 'all 0.3s ease',
+          padding: '0.5rem',
+          borderRadius: '6px',
+          '&:hover': {
+            background: 'rgba(220, 38, 38, 0.1)',
+            transform: 'translateX(5px)',
+          },
+        },
+      },
+      ctftimeLink: {
+        transition: 'all 0.3s ease',
+        filter: 'drop-shadow(0 0 5px rgba(220, 38, 38, 0.6))',
+        '&:hover': {
+          filter: 'drop-shadow(0 0 15px rgba(220, 38, 38, 1))',
+          transform: 'scale(1.2) rotate(5deg)',
+        },
       },
     },
     ({
@@ -83,19 +123,20 @@ const SummaryCard = memo(
               }`}
               title={name}
             >
-              {name}
+              🐉 {name}
             </h5>
             {ctftimeId && (
               <a
                 href={`https://ctftime.org/team/${ctftimeId}`}
                 target='_blank'
                 rel='noopener noreferrer'
+                className={classes.ctftimeLink}
               >
-                <Ctftime style='height: 20px;' />
+                <Ctftime style='height: 24px;' />
               </a>
             )}
           </div>
-          <div className='action-bar'>
+          <div className={`action-bar ${classes.actionBar}`}>
             <p>
               <span className={`icon ${classes.icon}`}>
                 <Trophy />
@@ -133,6 +174,33 @@ const TeamCodeCard = withStyles(
   {
     btn: {
       marginRight: '10px',
+      background:
+        'linear-gradient(135deg, #dc2626, #991b1b, #dc2626) !important',
+      color: '#fff !important',
+      border: '2px solid rgba(220, 38, 38, 0.8) !important',
+      fontWeight: '900 !important',
+      textTransform: 'uppercase !important',
+      letterSpacing: '0.1em !important',
+      transition: 'all 0.3s ease !important',
+      boxShadow: '0 0 20px rgba(220, 38, 38, 0.4) !important',
+      '&:hover': {
+        transform: 'translateY(-3px) scale(1.05) !important',
+        boxShadow: '0 5px 30px rgba(220, 38, 38, 0.7) !important',
+      },
+    },
+    title: {
+      color: '#ff6b6b',
+      fontSize: '1.5rem',
+      fontWeight: 900,
+      textShadow: '0 0 10px rgba(220, 38, 38, 0.8)',
+      marginBottom: '1rem',
+      letterSpacing: '0.05em',
+      textTransform: 'uppercase',
+    },
+    description: {
+      color: '#e5e5e5',
+      fontSize: '1rem',
+      marginBottom: '1.5rem',
     },
   },
   ({ teamToken, classes }) => {
@@ -158,8 +226,8 @@ const TeamCodeCard = withStyles(
     return (
       <div className='card'>
         <div className='content'>
-          <p>Team Invite</p>
-          <p className='font-thin'>
+          <p className={classes.title}>🔗 Team Invite</p>
+          <p className={`font-thin ${classes.description}`}>
             Send this team invite URL to your teammates so they can login.
           </p>
 
@@ -175,7 +243,7 @@ const TeamCodeCard = withStyles(
 
           <button
             onClick={toggleReveal}
-            className='btn-info u-center'
+            className={`${classes.btn} btn-info u-center`}
             name='btn'
             value='submit'
             type='submit'
@@ -197,14 +265,54 @@ const UpdateCard = withStyles(
         margin: 0,
         marginBottom: '0.4em',
         float: 'right',
+        background:
+          'linear-gradient(135deg, #dc2626, #991b1b, #dc2626) !important',
+        color: '#fff !important',
+        border: '2px solid rgba(220, 38, 38, 0.8) !important',
+        fontWeight: '900 !important',
+        textTransform: 'uppercase !important',
+        letterSpacing: '0.1em !important',
+        transition: 'all 0.3s ease !important',
+        boxShadow: '0 0 20px rgba(220, 38, 38, 0.4) !important',
+        '&:hover:not(:disabled)': {
+          transform: 'translateY(-3px) scale(1.05) !important',
+          boxShadow: '0 5px 30px rgba(220, 38, 38, 0.7) !important',
+        },
+        '&:disabled': {
+          opacity: '0.5 !important',
+        },
       },
       padding: '0 !important',
+      '& input, & select': {
+        background: 'linear-gradient(135deg, #1a0000, #330000) !important',
+        color: '#ff8888 !important',
+        border: '2px solid rgba(220, 38, 38, 0.4) !important',
+        borderRadius: '8px !important',
+        fontWeight: 'bold !important',
+        '&:focus': {
+          borderColor: 'rgba(220, 38, 38, 0.8) !important',
+          boxShadow: '0 0 20px rgba(220, 38, 38, 0.5) !important',
+        },
+      },
     },
     divisionSelect: {
       paddingLeft: '2.75rem',
     },
     recaptchaLegalNotice: {
       marginTop: '20px',
+    },
+    title: {
+      color: '#ff6b6b',
+      fontSize: '1.5rem',
+      fontWeight: 900,
+      textShadow: '0 0 10px rgba(220, 38, 38, 0.8)',
+      marginBottom: '0.5rem',
+      letterSpacing: '0.05em',
+      textTransform: 'uppercase',
+    },
+    description: {
+      color: '#e5e5e5',
+      fontSize: '0.95rem',
     },
   },
   ({
@@ -305,8 +413,8 @@ const UpdateCard = withStyles(
     return (
       <div className='card'>
         <div className='content'>
-          <p>Update Information</p>
-          <p className='font-thin u-no-margin'>
+          <p className={classes.title}>⚙️ Update Information</p>
+          <p className={`font-thin u-no-margin ${classes.description}`}>
             This will change how your team appears on the scoreboard. You may
             only change your team's name once every 10 minutes.
           </p>
@@ -439,12 +547,16 @@ const Profile = ({ classes }) => {
 
   if (error !== null) {
     return (
-      <div className='row u-center'>
-        <div className='col-4'>
-          <div className={`card ${classes.errorCard}`}>
-            <div className='content'>
-              <p className='title'>There was an error</p>
-              <p className='font-thin'>{error}</p>
+      <div className={classes.wrapper}>
+        <div className={classes.backgroundPulse} />
+        <div className={classes.dragonScales} />
+        <div className='row u-center'>
+          <div className='col-4'>
+            <div className={`card ${classes.errorCard}`}>
+              <div className='content'>
+                <p className={classes.errorTitle}>⚠️ Error</p>
+                <p className={classes.errorText}>{error}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -453,42 +565,47 @@ const Profile = ({ classes }) => {
   }
 
   return (
-    <div className={classes.root}>
-      {isPrivate && (
-        <div className={classes.privateCol}>
-          <TeamCodeCard {...{ teamToken }} />
-          <UpdateCard
+    <div className={classes.wrapper}>
+      <div className={classes.backgroundPulse} />
+      <div className={classes.dragonScales} />
+      <div className={classes.heatWave} />
+      <div className={classes.root}>
+        {isPrivate && (
+          <div className={classes.privateCol}>
+            <TeamCodeCard {...{ teamToken }} />
+            <UpdateCard
+              {...{
+                name,
+                email,
+                divisionId,
+                allowedDivisions,
+                onUpdate: onProfileUpdate,
+              }}
+            />
+            {config.ctftime && (
+              <CtftimeCard {...{ ctftimeId, onUpdate: onProfileUpdate }} />
+            )}
+          </div>
+        )}
+        <div className={classes.col}>
+          <SummaryCard
             {...{
               name,
-              email,
-              divisionId,
-              allowedDivisions,
-              onUpdate: onProfileUpdate,
+              score,
+              division,
+              divisionPlace,
+              globalPlace,
+              ctftimeId,
+              isPrivate,
             }}
           />
-          {config.ctftime && (
-            <CtftimeCard {...{ ctftimeId, onUpdate: onProfileUpdate }} />
+          {isPrivate && config.userMembers && <MembersCard />}
+          {isPrivate ? (
+            <PrivateSolvesCard solves={solves} />
+          ) : (
+            <PublicSolvesCard solves={solves} />
           )}
         </div>
-      )}
-      <div className={classes.col}>
-        <SummaryCard
-          {...{
-            name,
-            score,
-            division,
-            divisionPlace,
-            globalPlace,
-            ctftimeId,
-            isPrivate,
-          }}
-        />
-        {isPrivate && config.userMembers && <MembersCard />}
-        {isPrivate ? (
-          <PrivateSolvesCard solves={solves} />
-        ) : (
-          <PublicSolvesCard solves={solves} />
-        )}
       </div>
     </div>
   )
@@ -496,32 +613,131 @@ const Profile = ({ classes }) => {
 
 export default withStyles(
   {
+    '@keyframes pulse': {
+      '0%, 100%': { opacity: 1 },
+      '50%': { opacity: 0.5 },
+    },
+    '@keyframes scaleMove': {
+      '0%': { backgroundPosition: '0 0' },
+      '100%': { backgroundPosition: '70px 70px' },
+    },
+    '@keyframes heatWave': {
+      '0%, 100%': {
+        transform: 'scaleY(1)',
+        opacity: 0.6,
+      },
+      '50%': {
+        transform: 'scaleY(1.15)',
+        opacity: 0.8,
+      },
+    },
+    wrapper: {
+      position: 'relative',
+      minHeight: '100vh',
+      background: 'linear-gradient(to bottom, #000000, #450a0a, #000000)',
+      paddingTop: '2rem',
+      paddingBottom: '3rem',
+    },
+    backgroundPulse: {
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      zIndex: 0,
+      opacity: 0.2,
+      background: `radial-gradient(circle at 20% 50%, rgba(220, 38, 38, 0.4) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(153, 27, 27, 0.4) 0%, transparent 50%)`,
+      animation: '$pulse 4s ease-in-out infinite',
+      pointerEvents: 'none',
+    },
+    dragonScales: {
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      zIndex: 0,
+      opacity: 0.08,
+      backgroundImage: `
+        repeating-linear-gradient(0deg, transparent, transparent 35px, rgba(139, 0, 0, 0.1) 35px, rgba(139, 0, 0, 0.1) 36px),
+        repeating-linear-gradient(60deg, transparent, transparent 35px, rgba(139, 0, 0, 0.1) 35px, rgba(139, 0, 0, 0.1) 36px),
+        repeating-linear-gradient(120deg, transparent, transparent 35px, rgba(139, 0, 0, 0.1) 35px, rgba(139, 0, 0, 0.1) 36px)
+      `,
+      backgroundSize: '70px 70px',
+      animation: '$scaleMove 30s linear infinite',
+      pointerEvents: 'none',
+    },
+    heatWave: {
+      position: 'fixed',
+      bottom: 0,
+      left: 0,
+      right: 0,
+      height: '40%',
+      zIndex: 1,
+      background:
+        'linear-gradient(to top, rgba(220, 38, 38, 0.3) 0%, rgba(255, 69, 0, 0.1) 30%, transparent 100%)',
+      pointerEvents: 'none',
+      animation: '$heatWave 3s ease-in-out infinite',
+    },
     root: {
+      position: 'relative',
+      zIndex: 10,
       display: 'grid',
       gridTemplateColumns: 'repeat(auto-fit, minmax(384px, 1fr))',
       width: '100%',
       maxWidth: '1500px',
       margin: 'auto',
+      gap: '20px',
+      padding: '0 20px',
       '& .card': {
-        background: '#222',
+        background:
+          'linear-gradient(135deg, rgba(0,0,0,0.98), rgba(69,10,10,0.9), rgba(0,0,0,0.98))',
+        backdropFilter: 'blur(15px)',
+        border: '3px solid rgba(220, 38, 38, 0.6)',
+        borderRadius: '12px',
+        boxShadow:
+          '0 0 40px rgba(220, 38, 38, 0.3), inset 0 0 40px rgba(153, 27, 27, 0.15)',
         marginBottom: '20px',
+        transition: 'all 0.3s ease',
+        '&:hover': {
+          transform: 'translateY(-5px)',
+          boxShadow:
+            '0 10px 60px rgba(220, 38, 38, 0.5), inset 0 0 50px rgba(153, 27, 27, 0.2)',
+        },
       },
       '& input, & select, & option': {
-        background: '#111',
-        color: '#fff !important',
+        background: 'linear-gradient(135deg, #1a0000, #330000) !important',
+        color: '#ff8888 !important',
       },
     },
     col: {
       margin: '0 auto',
-      width: 'calc(100% - 20px)',
-      marginLeft: '10px',
+      width: '100%',
     },
     privateCol: {
-      width: 'calc(100% - 20px)',
-      marginLeft: '10px',
+      width: '100%',
     },
     errorCard: {
-      background: '#222',
+      background:
+        'linear-gradient(135deg, rgba(0,0,0,0.98), rgba(69,10,10,0.9), rgba(0,0,0,0.98))',
+      backdropFilter: 'blur(15px)',
+      border: '3px solid rgba(220, 38, 38, 0.8)',
+      boxShadow: '0 0 60px rgba(220, 38, 38, 0.6)',
+    },
+    errorTitle: {
+      color: '#ff6b6b',
+      fontSize: '2rem',
+      fontWeight: 900,
+      textShadow: '0 0 15px rgba(220, 38, 38, 0.8)',
+      marginBottom: '1rem',
+      textTransform: 'uppercase',
+      letterSpacing: '0.1em',
+    },
+    errorText: {
+      color: '#e5e5e5',
+      fontSize: '1.1rem',
+      fontWeight: 'bold',
     },
   },
   Profile

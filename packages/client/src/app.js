@@ -136,55 +136,59 @@ function App({ classes }) {
 
 const StyledApp = withStyles(
   {
-    '@global body': {
-      overflowX: 'hidden',
-    },
-    // we show the google legal notice on each protected form
-    '@global .grecaptcha-badge': {
-      visibility: 'hidden',
-    },
-    // cirrus makes recaptcha position the modal incorrectly, so we reset it here
-    '@global body > div[style*="position: absolute"]': {
-      top: '10px !important',
+    '@global': {
+      body: {
+        overflowX: 'hidden',
+        backgroundColor: '#0a0a0a',
+      },
+      // Breaking these out into flat keys often fixes the JSS TypeError
+      '::-webkit-scrollbar': {
+        width: '8px',
+      },
+      '::-webkit-scrollbar-track': {
+        background: '#0a0a0a',
+      },
+      '::-webkit-scrollbar-thumb': {
+        background: '#8b0000',
+        borderRadius: '4px',
+      },
+      '.grecaptcha-badge': {
+        visibility: 'hidden',
+      },
+      'body > div[style*="position: absolute"]': {
+        top: '10px !important',
+      },
+      select: {
+        background:
+          "url(\"data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%204%205'%3E%3Cpath%20fill='%23667189'%20d='M2%200L0%202h4zm0%205L0%203h4z'/%3E%3C/svg%3E\") right .85rem center/.5rem .6rem no-repeat no-repeat #111 !important",
+      },
+      ':root': {
+        '--cirrus-link': '#ff3333',
+        '--cirrus-link-dark': '#8b0000',
+        '--cirrus-select-bg': 'rgba(139, 0, 0, 0.4)',
+        '--cirrus-primary': '#8b0000',
+        '--cirrus-bg-main': '#0a0a0a',
+      },
     },
     root: {
       display: 'flex',
       flexDirection: 'column',
       minHeight: '100%',
-      background: '#111',
-      color: '#fff',
+      background: 'radial-gradient(circle at top, #1a0505 0%, #0a0a0a 100%)',
+      color: '#eee',
       '& *:not(code):not(pre)': {
-        fontFamily:
-          '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Noto Sans", "Oxygen", "Ubuntu", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important',
+        fontFamily: '"Rajdhani", "Segoe UI", Roboto, sans-serif !important',
       },
-      '& pre.code': {
-        padding: '10px',
-        background: 'var(--cirrus-code-bg)',
-        borderRadius: '5px',
-        margin: '10px 0',
-        color: '#ccc',
-        border: '1px solid #ffffff1a',
+      '& pre.code, & code': {
+        background: '#150000',
+        color: '#ff4d4d',
+        border: '1px solid #4a0000',
+        boxShadow: '0 0 10px rgba(255, 0, 0, 0.1)',
       },
-      '& code': {
-        padding: '.2em .4em',
-        background: 'var(--cirrus-code-bg)',
-        borderRadius: '3px',
-        color: '#ccc',
-        border: '1px solid #ffffff1a',
-      },
-    },
-    '@global select': {
-      background:
-        "url(\"data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%204%205'%3E%3Cpath%20fill='%23667189'%20d='M2%200L0%202h4zm0%205L0%203h4z'/%3E%3C/svg%3E\") right .85rem center/.5rem .6rem no-repeat no-repeat #111 !important",
-    },
-    '@global :root': {
-      '--cirrus-link': '#72b4e0',
-      '--cirrus-link-dark': '#277edb',
-      '--cirrus-select-bg': 'rgba(0, 161, 255, 0.4)',
-      '--cirrus-code-bg': '#333',
     },
     contentWrapper: {
       flex: '1 0 auto',
+      paddingTop: '2rem',
     },
   },
   App

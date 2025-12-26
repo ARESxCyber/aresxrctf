@@ -9,10 +9,10 @@ import { getChallenges } from '../../api/admin/challs'
 import { hasChallsWritePermission } from '../../util/permissions'
 
 const SAMPLE_PROBLEM = {
-  name: '',
-  descriptions: '',
-  category: '',
-  author: '',
+  name: 'Sanity Check',
+  descriptions: 'This is where it all starts! ARESx{sanity_check?!}',
+  category: 'Begin',
+  author: 'mirkhoff',
   files: [],
   points: {
     min: 100,
