@@ -1,4 +1,5 @@
 # yarn 2 (no zero-install)
+.env.test
 
 .yarn/*
 !.yarn/patches
