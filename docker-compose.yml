@@ -3,7 +3,7 @@ services:
     image: ghcr.io/otter-sec/rctf:${RCTF_GIT_REF}
     restart: always
     ports:
-      - '127.0.0.1:8080:80'
+      - 8080:80
     networks:
       - rctf
     env_file:
@@ -12,9 +12,9 @@ services:
       - ./rctf.d:/app/rctf.d
       - ./data/uploads:/app/uploads
     depends_on:
-      - redis
-      - postgres
-  redis:
+      - aredis
+      - apostgres
+  aredis:
     image: redis:6.0.6
     restart: always
     command: ['redis-server', '--requirepass', '${RCTF_REDIS_PASSWORD}']
@@ -22,7 +22,7 @@ services:
       - rctf
     volumes:
       - ./data/redis:/data
-  postgres:
+  apostgres:
     image: postgres:12.3
     restart: always
     environment:

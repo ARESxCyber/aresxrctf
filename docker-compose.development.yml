@@ -1,17 +1,42 @@
 services:
-  redis:
+  rctf:
+    build: .
+    container_name: rctf
+    restart: unless-stopped
+    depends_on:
+      - aredis
+      - apostgres
+    ports:
+      - "8080:80"
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+
+      REDIS_HOST: aredis
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: DO_NOT_USE_ME
+
+      DATABASE_HOST: apostgres
+      DATABASE_PORT: 5432
+      DATABASE_USER: rctf
+      DATABASE_PASSWORD: DO_NOT_USE_ME
+      DATABASE_NAME: rctf
+
+      # rCTF
+      RCTF_CONF_PATH: /app/rctf.d
+      PORT: 80
+    volumes:
+      - ./rctf.d:/app/rctf.d
+  aredis:
     image: redis:6.0.6
     restart: always
     command: ['redis-server', '--requirepass', 'DO_NOT_USE_ME']
-    ports:
-      - '127.0.0.1:6379:6379'
     volumes:
       - ./data/redis:/data
-  postgres:
+  apostgres:
     image: postgres:12.3
     restart: always
-    ports:
-      - '127.0.0.1:5432:5432'
     environment:
       - POSTGRES_PASSWORD=DO_NOT_USE_ME
       - POSTGRES_USER=rctf

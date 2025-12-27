@@ -29,6 +29,8 @@ WORKDIR /app
 COPY --from=build /app/node_modules /app/node_modules
 ENV NODE_ENV=production
 
+RUN apt-get update && apt-get install -y wget
+
 ENV RCTF_CONF_PATH=/app/rctf.d
 VOLUME /app/rctf.d
 ENV PORT=80
