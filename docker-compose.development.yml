@@ -4,8 +4,8 @@ services:
     container_name: rctf
     restart: unless-stopped
     depends_on:
-      - aredis
-      - apostgres
+      - arwa2026_redis
+      - arwa2026_postgres
     ports:
       - "8080:80"
     env_file:
@@ -28,13 +28,13 @@ services:
       PORT: 80
     volumes:
       - ./rctf.d:/app/rctf.d
-  aredis:
+  arwa2026_redis:
     image: redis:6.0.6
     restart: always
     command: ['redis-server', '--requirepass', 'DO_NOT_USE_ME']
     volumes:
       - ./data/redis:/data
-  apostgres:
+  arwa2026_postgres:
     image: postgres:12.3
     restart: always
     environment:

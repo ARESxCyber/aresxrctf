@@ -20399,17 +20399,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"type-fest@npm:2.5.2":
+"type-fest@npm:2.5.2, type-fest@npm:^0.13.1":
   version: 2.5.2
   resolution: "type-fest@npm:2.5.2"
   checksum: 10/f68d69a5c9f3a7919ce9604fe249e2e8db491acf6859c77f92a5ccc5d87972ad48d54ed4c58c0c54ba85096175daffc49cd911891af63fbcf0570300f3eb19ce
-  languageName: node
-  linkType: hard
-
-"type-fest@npm:^0.13.1":
-  version: 0.13.1
-  resolution: "type-fest@npm:0.13.1"
-  checksum: 10/11e9476dc85bf97a71f6844fb67ba8e64a4c7e445724c0f3bd37eb2ddf4bc97c1dc9337bd880b28bce158de1c0cb275c2d03259815a5bf64986727197126ab56
   languageName: node
   linkType: hard
 
